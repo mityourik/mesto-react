@@ -5,14 +5,14 @@ import Main from './Main';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
-function App() {
+function App() {//cостояния для управления открытием/закрытием попапов и выбранной карточкой
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
 
-  const handleEditProfileClick = () => {
+  const handleEditProfileClick = () => {//функции для открытия попапов
     setIsEditProfilePopupOpen(true);
   };
 
@@ -24,7 +24,7 @@ function App() {
     setIsEditAvatarPopupOpen(true);
   };
 
-  const closeAllPopups = () => {
+  const closeAllPopups = () => {// закрытие всех попапов
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
@@ -32,22 +32,22 @@ function App() {
     setSelectedCard(null);
   };
 
-  const handleCardClick = (card) => {
+  const handleCardClick = (card) => {// открытие попапа превью при клике на карточку
     setSelectedCard(card);
     setIsImagePopupOpen(true); 
   };
 
-  const handleEscClose = (event) => {
-    if (event.key === 'Escape') {
+  const handleEscClose = (e) => {
+    if (e.key === 'Escape') {
       closeAllPopups();
     }
   };
 
-  useEffect(() => {
+  useEffect(() => {//добавление и удаление обработчика при монтировании и размонтировании компонента
     document.addEventListener('keydown', handleEscClose);
 
     return () => {
-      document.removeEventListener('keydown', handleEscClose);//удаляем при размонтировании
+      document.removeEventListener('keydown', handleEscClose);
     };
   }, []);
 

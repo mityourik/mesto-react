@@ -3,12 +3,14 @@ import profileAvatar from '../images/profile__avatar.png';
 import { api } from '../utils/Api';
 import Card from './Card';
 
+// состояния для информации о пользователе и карточках
 function Main({ onEditAvatar, onEditProfile, onAddPlace, onCardClick }) {
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
   const [cards, setCards] = useState([]);
 
+//получение информации о пользователе и карточках с сервера при монтировании компонента
   useEffect(() => {
     Promise.all([api.getUserInfoApi(), api.getInitialCards()])
       .then(([userInfo, initialCards]) => {

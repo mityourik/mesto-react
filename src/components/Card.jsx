@@ -2,7 +2,7 @@ import React from 'react';
 
 function Card({ card, onCardClick }) {
     function handleClick() {
-        onCardClick(card); //передаем карточку с кликом
+        onCardClick(card); //передаем объект карточки в обработчик
     }
 
   return (
