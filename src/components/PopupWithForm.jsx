@@ -12,7 +12,7 @@ function PopupWithForm({ name, title, textButton, isOpen, children, onClose }) {
   }
 
   return (
-    <div className={`popup ${isOpen ? 'popup_opened' : ''}`} onClick={handleOverlayClick}>
+    <div className={`popup ${isOpen && 'popup_opened'}`} onClick={handleOverlayClick}>
       <div className="popup__container" onClick={handleContainerClick}>
         <button
           className="button popup__close-button"
@@ -27,7 +27,7 @@ function PopupWithForm({ name, title, textButton, isOpen, children, onClose }) {
         >
           {children}
           <button className="button popup__save-button" type="submit">
-            {textButton}
+          {textButton || 'Сохранить'}
           </button>
         </form>
       </div>

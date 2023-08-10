@@ -21,11 +21,11 @@ function ImagePopup({ card, onClose }) {
           onClick={onClose}
         ></button>
         <img
-          alt={`Фото путешествия ${card ? card.name : ''}`}
+          alt={`Фото путешествия $${card?.name}`}//применение опциональной цепочки
           className="popup__image-preview"
-          src={card ? card.link : ''}
+          src={card?.link}
         />
-        <h2 className="popup__preview-name">{card ? card.name : ''}</h2>
+        <h2 className="popup__preview-name">{card?.name}</h2>
       </div>
     </div>
   );
