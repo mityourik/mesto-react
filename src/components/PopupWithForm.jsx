@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
-function PopupWithForm({ name, title, textButton, isOpen, children, onClose }) {
+const PopupWithForm = forwardRef(({ name, title, textButton, isOpen, children, onClose, onSubmit }, ref) => {
+  
   function handleOverlayClick(e) {
     if (e.target === e.currentTarget) {
       onClose();
@@ -8,7 +9,7 @@ function PopupWithForm({ name, title, textButton, isOpen, children, onClose }) {
   }
 
   function handleContainerClick(e) {
-    e.stopPropagation();//блокирование всплытия обработчика до оверлея
+    e.stopPropagation();  // блокирование всплытия обработчика до оверлея
   }
 
   return (
@@ -22,8 +23,10 @@ function PopupWithForm({ name, title, textButton, isOpen, children, onClose }) {
         ></button>
         <h2 className="popup__title">{title}</h2>
         <form
+          ref={ref} // реф для проброса формы
           className={`popup__profile-form popup__profile-form_content_${name}`}
           name={`${name}-form`}
+          onSubmit={onSubmit}
         >
           {children}
           <button className="button popup__save-button" type="submit">
@@ -33,6 +36,6 @@ function PopupWithForm({ name, title, textButton, isOpen, children, onClose }) {
       </div>
     </div>
   );
-}
+});
 
 export default PopupWithForm;
