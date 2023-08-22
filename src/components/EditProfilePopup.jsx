@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import { FormValidator } from './FormValidator';
+import { FormValidator } from '../utils/FormValidator';
 import { validationSettings } from '../utils/constants';
 
 

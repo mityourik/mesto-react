@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
-import { FormValidator } from './FormValidator';
+import { FormValidator } from '../utils/FormValidator';
 import { validationSettings } from '../utils/constants';
 
 function AddPlacePopup({ isOpen, onClose, onAddPlace, isPreloading, onOverlayClose }) {

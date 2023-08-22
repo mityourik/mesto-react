@@ -1,22 +1,8 @@
 import React, { useEffect } from 'react';
+import PopupWithForm from './PopupWithForm';
 
-function ConfirmationPopup({ isOpen, onClose, onConfirm, isPreloading }) {
+function ConfirmationPopup({ isOpen, onClose, onConfirm, isPreloading, textButton }) {
     
-    function handleOverlayClick(e) {
-        if (e.target === e.currentTarget) {
-            onClose();
-        }
-    }
-
-    function handleContainerClick(e) {
-        e.stopPropagation();
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        onConfirm();
-    }
-
     const handleKeyDown = (event) => {
         if (event.key === 'Enter') {
             onConfirm();
@@ -27,6 +13,7 @@ function ConfirmationPopup({ isOpen, onClose, onConfirm, isPreloading }) {
         }
     };
     
+    // Добавление и удаление обработчика нажатия клавиши при открытии/закрытии попапа
     useEffect(() => {
         if (isOpen) {
             document.addEventListener('keydown', handleKeyDown);
@@ -36,29 +23,19 @@ function ConfirmationPopup({ isOpen, onClose, onConfirm, isPreloading }) {
         };
     }, [isOpen]);
 
+    const buttonText = isPreloading ? 'поцеловал тебя Витек' : 'угу';
+
     return (
-        <div 
-            className={`popup popup_content_confirm ${isOpen && 'popup_opened'}`} 
-            onClick={handleOverlayClick}
+        <PopupWithForm
+            name="confirmation"
+            title="Удаляем?"
+            isOpen={isOpen}
+            onClose={onClose}
+            onSubmit={onConfirm}
+            isPreloading={isPreloading}
+            textButton={buttonText}
         >
-            <div className="popup__container" onClick={handleContainerClick}>
-                <button 
-                    className="button popup__close-button button_close_question" 
-                    type="button" 
-                    aria-label="Кнопка Закрыть окно" 
-                    onClick={onClose}
-                ></button>
-                <h2 className="popup__title popup__title_content_confirm">Вы уверены?</h2>
-                <button 
-                    className="button popup__save-button" 
-                    type="submit" 
-                    aria-label="Кнопка Да" 
-                    onClick={handleSubmit}
-                >
-                    {isPreloading ? 'Карточка всё...' : 'Да'}
-                </button>
-            </div>
-        </div>
+        </PopupWithForm>
     );
 }
 

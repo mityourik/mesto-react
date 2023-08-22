@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 import CurrentUserContext from "../contexts/CurrentUserContext";
-import { FormValidator } from './FormValidator';
+import { FormValidator } from '../utils/FormValidator';
 import { validationSettings } from '../utils/constants';
 
 function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isPreloading, onOverlayClose}) {
@@ -13,7 +13,7 @@ function EditAvatarPopup({ isOpen, onClose, onUpdateAvatar, isPreloading, onOver
   
     useEffect(() => {
       if (isOpen && currentUser) {//если попап открыт и есть текущие данные юзера
-          setAvatarUrl(currentUser.avatar);
+          setAvatarUrl('');//очищаем поле юрл текущего юзера
       }
     }, [isOpen, currentUser]);
   

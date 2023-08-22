@@ -23,12 +23,39 @@ function App() {//cостояния для управления открытие
   const [cardToDelete, setCardToDelete] = useState(null);
 
   useEffect(() => {
-    document.addEventListener('keydown', handleEscClose);
-
-    return () => {
+    const handleEscClose = (e) => {
+      if (//добавил обработчик только в случае, если хотя бы один попап открыт
+        e.key === 'Escape' &&
+        (isEditProfilePopupOpen ||
+          isAddPlacePopupOpen ||
+          isEditAvatarPopupOpen ||
+          isImagePopupOpen ||
+          isConfirmationPopupOpen)
+      ) {
+        closeAllPopups();
+      }
+    };
+  
+    if (
+      isEditProfilePopupOpen ||
+      isAddPlacePopupOpen ||
+      isEditAvatarPopupOpen ||
+      isImagePopupOpen ||
+      isConfirmationPopupOpen
+    ) {
+      document.addEventListener('keydown', handleEscClose);
+    }
+  
+    return () => {//удалить обработчик при размонтировании компонента или изменении состояния
       document.removeEventListener('keydown', handleEscClose);
     };
-  }, [isEditProfilePopupOpen, isAddPlacePopupOpen, isEditAvatarPopupOpen, isImagePopupOpen]);
+  }, [
+    isEditProfilePopupOpen,
+    isAddPlacePopupOpen,
+    isEditAvatarPopupOpen,
+    isImagePopupOpen,
+    isConfirmationPopupOpen,
+  ]);  
 
   useEffect(() => {
     Promise.all([api.getUserInfoApi(), api.getInitialCards()])
@@ -63,17 +90,6 @@ function App() {//cостояния для управления открытие
   const handleCardClick = (card) => {
     setSelectedCard(card);
     setIsImagePopupOpen(true); 
-  };
-
-  const handleEscClose = (e) => {
-    if (e.key === 'Escape' && (
-      isEditProfilePopupOpen || 
-      isAddPlacePopupOpen || 
-      isEditAvatarPopupOpen || 
-      isImagePopupOpen || 
-      isConfirmationPopupOpen)) {
-      closeAllPopups();
-    }
   };
 
   const handleCardLike = (card) => {
@@ -196,6 +212,7 @@ function App() {//cостояния для управления открытие
           onClose={handleCloseConfirmation} 
           onConfirm={handleConfirmDelete}
           isPreloading={isPreloading}
+          textButton='Канешна'
         />
 
       </div>
