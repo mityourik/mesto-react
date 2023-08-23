@@ -212,7 +212,6 @@ function App() {//cостояния для управления открытие
           onClose={handleCloseConfirmation} 
           onConfirm={handleConfirmDelete}
           isPreloading={isPreloading}
-          textButton='Канешна'
         />
 
       </div>
