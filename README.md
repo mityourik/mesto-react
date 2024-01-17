@@ -1,7 +1,3 @@
-<div align="center">
-  <img src="https://i.postimg.cc/q75GkbJC/image-png.png" alt="Logo" width="200" height="200">
-</div>
-
 <h1 align="center">Проектная работа: Mesto. Одиннадцатый спринт</h1>
 
 <p align="center">

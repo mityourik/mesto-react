@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import PopupWithForm from "./PopupWithForm";
 import { FormValidator } from '../utils/FormValidator';
 import { validationSettings } from '../utils/constants';
